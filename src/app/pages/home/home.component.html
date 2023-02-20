@@ -1,99 +1,99 @@
 <header></header>
 <div class="welcome">
-  <h3 class="welcome-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mattis augue ut velit pretium ultricies. Donec varius tempor lacinia. Morbi rhoncus felis nec neque auctor, sed rutrum leo tempus. Fusce tincidunt elit ac viverra porttitor. Praesent vulputate neque et tellus egestas porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Ut ornare justo ac porttitor interdum. Sed ut justo ante. Ut vulputate, tellus condimentum feugiat condimentum, dui ligula vestibulum felis, in sagittis est tortor ut ligula. Maecenas cursus luctus nunc eu elementum. Duis ultrices orci quis cursus molestie. Nulla leo turpis, rutrum a tincidunt quis, bibendum nec nisl. Duis malesuada est felis. In blandit ligula in augue facilisis, in ullamcorper quam tristique. Phasellus dictum, ligula nec facilisis sollicitudin, lectus enim facilisis lacus, et ultrices diam neque id tortor.
-
-    Integer ornare mauris eget neque lobortis, quis cursus enim pretium. Suspendisse dapibus mattis tortor nec varius. Morbi in nisi vehicula, vulputate nibh elementum, accumsan lorem. Curabitur laoreet rutrum mollis. Duis orci metus, faucibus quis dapibus sed, sagittis et nisi. Aliquam erat volutpat. Praesent id dictum felis. Maecenas felis enim, iaculis at risus dignissim, consequat dignissim ipsum. In placerat lacus non ante pretium commodo. Donec consectetur luctus pretium. Sed sed ligula pharetra, tincidunt tortor sed, dapibus urna. Donec at enim sed ligula finibus sodales quis eu tortor. Proin sit amet mattis ipsum. Nulla in ante blandit, imperdiet tellus a, blandit velit. Sed augue libero, interdum in imperdiet at, interdum id erat. Nullam ut metus iaculis, ornare dolor vitae, egestas arcu.</h3>
-    <img src="../../../assets/img/cestas-image.png">
+  <h3 class="welcome-title">
+    "Durante a pandemia da <b>Covid-19</b> muitos brasileiros perderam seus empregos por
+    conta da crise que se agravou no país fazendo com que muitas pessoas
+    ficassem em situações financeiras críticas. <b>Sol Silva </b> moradora do Parque Santa Madalena (Zona Leste - SP) criou o
+    <b>Núcleo Social Entre Mãos</b>, uma OSC (Organização da Sociedade Civil) que distribui
+    cestas básicas e gás de cozinha para famílias de baixa renda que se
+    encontram em situação de desemprego, dívidas, e de vulnerabilidade. A idéia
+    do Núcleo iniciou-se em <b>2020</b> quando ela ainda trabalhava em outra ONG e percebeu que muitas famílias estavam precisando de ajuda, ela juntamente com
+    alguns amigos começaram aos poucos distribuindo cestas básicas para famílias
+    da comunidade, e atualmente ela montou o seu próprio Núcleo dentro da própria casa
+    que atende mais de 70 famílias fornecendo cestas básicas mensalmente e o gás
+    de cozinha para moradores do bairro e regiões próximas. Através desse
+    projeto Sol conheceu a fundo realidades de famílias na qual ela nem
+    imaginava e começou a dar mais valor pelo o que ela tinha. Um projeto
+    filantrópico fundado por uma equipe que deseja <b>ajudar pessoas</b> — fazendo o
+    possível para que essas famílias possam se reerguer em tempos difíceis,
+    fornecendo ajuda durante seis meses e estendendo esse prazo se necessário
+    com ajuda de amigos parceiros do projeto. O Núcleo Entre mãos possui esse
+    nome por um motivo: “<b>É o passar de mãos da arrecadação</b> , uma pessoa ajudando
+    a outra criando uma rede, alguém indica uma família, passa para mim e para a
+    equipe que trabalha comigo e eles doam a cesta básica e o gás de cozinha
+    para a família e através dessa família outras famílias ficam sabendo do
+    Núcleo e mais pessoas podem ser ajudadas” explicou Sol."
+  </h3>
+  <img src="../../../assets/img/cestas-image.png" />
 </div>
 
 
 
-
-
-
-<div class="cards-list">
-  
-  <div class="card 1">
-    <div class="card_image"> <img src="../../../assets/img/doador.jpg" /> </div>
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img
+        class="d-block w-100"
+        src="../../../assets/img/example1.jpg"
+        alt="First slide"
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        class="d-block w-100"
+        src="../../../assets/img/example2.jpeg"
+        alt="Second slide"
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        class="d-block w-100"
+        src="../../../assets/img/example3.jpg"
+        alt="Third slide"
+      />
+    </div>
   </div>
-  
-    <div class="card 2">
+  <a
+    class="carousel-control-prev"
+    href="#carouselExampleControls"
+    role="button"
+    data-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a
+    class="carousel-control-next"
+    href="#carouselExampleControls"
+    role="button"
+    data-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+
+<div class="welcome">
+  <img src="../../../assets/img/vector-donation.jpg" />
+  <h3 class="welcome-title">
+    Para ser uma família cadastrada no projeto basta responder o pré formulário abaixo onde será analisado: a situação financeira da família,quantidade de membros, dados pessoais entre outras informações. E caso
+    queira ajudar de alguma forma o projeto o núcleo aceita doações de alimentos, cestas básicas e indicações de famílias que estão precisando de ajuda.
+  </h3>
+</div>
+
+<div (click)="redirectToFormContemplated()" class="cards-list">
+  <div class="card 1">
+    <div class="card_image"><img src="../../../assets/img/doador.jpg" /></div>
+  </div>
+
+  <div class="card 2">
     <div class="card_image">
       <img src="../../../assets/img/contemplado.jpg" />
-      </div>
+    </div>
   </div>
-
-  
-  </div>
-
-
-
-  <div class="welcome">
-    <img src="../../../assets/img/vector-donation.jpg">
-    <h3 class="welcome-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mattis augue ut velit pretium ultricies. Donec varius tempor lacinia. Morbi rhoncus felis nec neque auctor, sed rutrum leo tempus. Fusce tincidunt elit ac viverra porttitor. Praesent vulputate neque et tellus egestas porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Ut ornare justo ac porttitor interdum. Sed ut justo ante. Ut vulputate, tellus condimentum feugiat condimentum, dui ligula vestibulum felis, in sagittis est tortor ut ligula. Maecenas cursus luctus nunc eu elementum. Duis ultrices orci quis cursus molestie. Nulla leo turpis, rutrum a tincidunt quis, bibendum nec nisl. Duis malesuada est felis. In blandit ligula in augue facilisis, in ullamcorper quam tristique. Phasellus dictum, ligula nec facilisis sollicitudin, lectus enim facilisis lacus, et ultrices diam neque id tortor.
-</h3>
-      
-  </div>
-  
-  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img class="d-block w-100" src="../../../assets/img/example1.jpg" alt="First slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="../../../assets/img/example2.jpeg" alt="Second slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="../../../assets/img/example3.jpg" alt="Third slide">
-      </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-
-
-
-
-
-  <!-- Wrapper container -->
-<div class="container py-4">
-
-  <h1 style="text-align: center;">Pré Cadastro</h1>
-
-  <!-- Bootstrap 5 starter form -->
-  <form id="contactForm">
-
-    <!-- Name input -->
-    <div class="mb-3">
-      <label class="form-label" for="name">Nome Completo</label>
-      <input class="form-control" id="name" type="text" placeholder="Exemplo: Maria da Silva" />
-    </div>
-
-    <!-- Email address input -->
-    <div class="mb-3">
-      <label class="form-label" for="emailAddress">Email</label>
-      <input class="form-control" id="emailAddress" type="email" placeholder="Exemplo: Maria@Email.com" />
-    </div>
-
-    <!-- Name input -->
-    <div class="mb-3">
-      <label class="form-label" for="cep">Cep</label>
-      <input class="form-control" id="cep" type="text" placeholder="Exemplo: 15489-254" />
-    </div>
-
-    <!-- Form submit button -->
-    <div class="d-grid">
-      <button class="btn btn-primary btn-lg" type="submit">Submit</button>
-    </div>
-
-  </form>
-
 </div>
+
 
 <footer></footer>
