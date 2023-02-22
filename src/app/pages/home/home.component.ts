@@ -9,8 +9,12 @@ import { Router } from '@angular/router';
 export class HomeComponent {
   constructor(private router: Router) { }
 
-  redirectToFormContemplated() {
-    this.router.navigate(['formContemplado']);
+  redirectToPreRegistration() {
+    this.router.navigate(['preCadastro']);
+  }
+
+  redirectToDonor() {
+    this.router.navigate(['doador']);
   }
   
 }

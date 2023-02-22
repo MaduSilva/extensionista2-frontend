@@ -1,11 +1,11 @@
 import { Component, ViewChild  } from '@angular/core';
 
 @Component({
-  selector: 'formContemplado',
-  templateUrl: './form-contemplated.component.html',
-  styleUrls: ['./form-contemplated.component.css']
+  selector: 'preCadastro',
+  templateUrl: './preRegistration.component.html',
+  styleUrls: ['./preRegistration.component.css']
 })
-export class FormContemplatedComponent {
+export class preRegistrationComponent {
   @ViewChild('myForm') form: any;
   nomeCompleto: string = '';
   email: string = '';

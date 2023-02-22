@@ -8,8 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from './components/footer/footer.component';
-import { FormContemplatedComponent } from './pages/form-contemplated/form-contemplated.component';
+import { preRegistrationComponent } from './pages/preRegistration/preRegistration.component';
 import { FormsModule } from '@angular/forms';
+import { DonorComponent } from './pages/donor/donor.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    FormContemplatedComponent,
+    preRegistrationComponent,
+    DonorComponent,
   ],
   imports: [
     BrowserModule,
