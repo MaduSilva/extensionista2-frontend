@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AuthModule } from './auth/auth.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { preRegistrationComponent } from './pages/preRegistration/preRegistration.component';
 import { FormsModule } from '@angular/forms';
 import { DonorComponent } from './pages/donor/donor.component';
+import { ContemplatedRegistrationComponent } from './pages/contemplated-registration/contemplated-registration.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +22,15 @@ import { DonorComponent } from './pages/donor/donor.component';
     FooterComponent,
     preRegistrationComponent,
     DonorComponent,
+    ContemplatedRegistrationComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
