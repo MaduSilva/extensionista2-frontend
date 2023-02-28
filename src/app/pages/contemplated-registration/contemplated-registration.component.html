@@ -1,6 +1,22 @@
 <header></header>
 <div class="container py-4">
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="photo">Foto de Perfil:</label>
+      <input
+        class="form-control"
+        type="file"
+        id="formFile"
+        (change)="onFileSelected($event)"
+      />
+      <img
+        style="max-width: 200px; border-radius: 100%"
+        *ngIf="previewUrl"
+        [src]="previewUrl"
+        class="img-thumbnail"
+      />
+    </div>
+
     <div class="form-row">
       <div class="col-md-6 mb-3">
         <label for="nome" class="control-label">Nome Completo</label>
@@ -30,257 +46,413 @@
         >
       </div>
     </div>
-    
 
-      <div class="form-row">
-        <div class="col-md-4 mb-3">
-          <label for="cep" class="control-label">CEP </label>
-          <input
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="cep" class="control-label">CEP </label>
+        <input
           type="text"
           class="form-control"
           id="cep"
           formControlName="cep"
           placeholder="Exemplo: 12345-678"
-          />
-          <small *ngIf="checkValidTouched('cep')" style="color: red"
+        />
+        <small *ngIf="checkValidTouched('cep')" style="color: red"
           >CEP é obrigatório.</small
-          >
-        </div>
-        <div class="col-md-5 mb-3">
-          <label for="rua" class="control-label">Rua </label>
-          <input
+        >
+      </div>
+      <div class="col-md-5 mb-3">
+        <label for="rua" class="control-label">Rua </label>
+        <input
           type="text"
           class="form-control"
           id="rua"
           formControlName="rua"
           placeholder="Exemplo: Avenida Brasil"
-          />
-          <small *ngIf="checkValidTouched('rua')" style="color: red"
+        />
+        <small *ngIf="checkValidTouched('rua')" style="color: red"
           >Rua é obrigatório.</small
-          >
-        </div>
-        <div class="col-md-3 mb-3">
-          <label for="numero" class="control-label">Número </label>
-          <input
+        >
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="numero" class="control-label">Número </label>
+        <input
           type="text"
           class="form-control"
           id="numero"
           formControlName="numero"
           placeholder="Exemplo: 0912"
-          />
-          <small *ngIf="checkValidTouched('numero')" style="color: red"
+        />
+        <small *ngIf="checkValidTouched('numero')" style="color: red"
           >Número é obrigatório.</small
-          >
-        </div>
+        >
       </div>
-      
-      <div class="form-row">
-        <div class="col-md-6 mb-3">
-          <label for="complemento" class="control-label">Complemento </label>
-          <input
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="complemento" class="control-label">Complemento </label>
+        <input
           type="text"
           class="form-control"
           id="complemento"
           formControlName="complemento"
           placeholder="Exemplo: Apto 3011 Bloco B"
-          />
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="bairro" class="control-label">Bairro </label>
-          <input
+        />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="bairro" class="control-label">Bairro </label>
+        <input
           type="text"
           class="form-control"
           id="bairro"
           formControlName="bairro"
           placeholder="Exemplo: Jardim Paulista"
-          />
-          <small *ngIf="checkValidTouched('bairro')" style="color: red"
+        />
+        <small *ngIf="checkValidTouched('bairro')" style="color: red"
           >Bairro é obrigatório.</small
-          >
-        </div>       
+        >
       </div>
+    </div>
 
-      <div class="form-row">
-        <div class="col-md-4 mb-3">
-          <label for="rg" class="control-label">RG </label>
-          <input
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="rg" class="control-label">RG </label>
+        <input
           type="text"
           class="form-control"
           id="rg"
           formControlName="rg"
           placeholder="Exemplo: 12.345.678-9"
-          />
-          <small *ngIf="checkValidTouched('rg')" style="color: red"
+        />
+        <small *ngIf="checkValidTouched('rg')" style="color: red"
           >RG é obrigatório.</small
-          >
-        </div>
-        <div class="col-md-4 mb-3">
-          <label for="cpf" class="control-label">CPF </label>
-          <input
+        >
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="cpf" class="control-label">CPF </label>
+        <input
           type="text"
           class="form-control"
           id="cpf"
           formControlName="cpf"
           placeholder="Exemplo: 123.456.789-01"
-          />
-          <small *ngIf="checkValidTouched('cpf')" style="color: red"
+        />
+        <small *ngIf="checkValidTouched('cpf')" style="color: red"
           >CPF é obrigatório.</small
-          >
-        </div>
-        <div class="col-md-4 mb-3">
-          <label for="nascimento" class="control-label">Data de Nascimento </label>
-          <input
-            type="text"
-            class="form-control"
-            id="nascimento"
-            formControlName="nascimento"
-            placeholder="Exemplo: 01/01/1990"
-          />
-          <small *ngIf="checkValidTouched('nascimento')" style="color: red">Data de Nascimento é obrigatória e deve ser escrita como 'dd/mm/aaaa'</small>
-        </div>
-        
+        >
       </div>
-      <div class="form-row">
-        <div class="col-md-4 mb-3">
-          <label for="estadoCivil" class="control-label">Estado Civil </label>
-          <select class="form-control" id="estadoCivil" formControlName="estadoCivil">
-            <option value="solteiro">Solteiro</option>
-            <option value="casado">Casado</option>
-            <option value="separado">Separado</option>
-            <option value="divorciado">Divorciado</option>
-            <option value="viuvo">Viúvo</option>
-          </select>
-          <small *ngIf="checkValidTouched('estadoCivil')" style="color: red"
+      <div class="col-md-4 mb-3">
+        <label for="nascimento" class="control-label"
+          >Data de Nascimento
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          id="nascimento"
+          formControlName="nascimento"
+          placeholder="Exemplo: 01/01/1990"
+        />
+        <small *ngIf="checkValidTouched('nascimento')" style="color: red"
+          >Data de Nascimento é obrigatória e deve ser escrita como
+          'dd/mm/aaaa'</small
+        >
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="estadoCivil" class="control-label">Estado Civil </label>
+        <select
+          class="form-control"
+          id="estadoCivil"
+          formControlName="estadoCivil"
+        >
+          <option value="solteiro">Solteiro</option>
+          <option value="casado">Casado</option>
+          <option value="separado">Separado</option>
+          <option value="divorciado">Divorciado</option>
+          <option value="viuvo">Viúvo</option>
+        </select>
+        <small *ngIf="checkValidTouched('estadoCivil')" style="color: red"
           >Estado civil é obrigatório.</small
-          >
-        </div>
-        <div class="col-md-4 mb-3">
-          <label for="escolaridade" class="control-label">Escolaridade </label>
-          <select class="form-control" id="escolaridade" formControlName="escolaridade">
-            <option value="fundamental-incompleto">Fundamental incompleto</option>
-            <option value="fundamental-completo">Fundamental completo</option>
-            <option value="medio-incompleto">Médio incompleto</option>
-            <option value="medio-completo">Médio completo</option>
-            <option value="superior-incompleto">Superior incompleto</option>
-            <option value="superior-completo">Superior completo</option>
-            <option value="pos-graduacao">Pós-graduação</option>
-            <option value="mestrado">Mestrado</option>
-            <option value="doutorado">Doutorado</option>
-          </select>          
-          <small *ngIf="checkValidTouched('escolaridade')" style="color: red"
-          >Escolaridade é obrigatório.</small
-          >
-        </div>
-        <div class="col-md-4 mb-3">
-          <label for="naturalidade" class="control-label">Natural de </label>
-          <input
-            type="text"
-            class="form-control"
-            id="naturalidade"
-            formControlName="naturalidade"
-            placeholder="Exemplo: São Paulo"
-          />
-          <small *ngIf="checkValidTouched('naturalidade')" style="color: red">Naturalidade é obrigatória</small>
-        </div>
-        
+        >
       </div>
-      <div class="form-row">
-        <div class="col-md-6 mb-3">
-          <label for="telefone" class="control-label">Telefone </label>
-          <input
-            type="text"
-            class="form-control"
-            id="telefone"
-            formControlName="telefone"
-            placeholder="Exemplo: 912345678"
-          />
-          <small *ngIf="checkValidTouched('telefone')" style="color: red">Telefone é obrigatório</small>
-        </div>
-        <div class="col-md-6 mb-3">
-            <label for="religiao" class="control-label">Religião</label>
-            <select class="form-control" id="religiao" name="religiao" formControlName="religiao">
-              <option value="sim">Sim</option>
-              <option value="nao">Não</option>
-            </select>
-            <small *ngIf="checkValidTouched('religiao')" style="color: red">Religião é obrigatório</small>
-          </div>
+      <div class="col-md-4 mb-3">
+        <label for="escolaridade" class="control-label">Escolaridade </label>
+        <select
+          class="form-control"
+          id="escolaridade"
+          formControlName="escolaridade"
+        >
+          <option value="fundamental-incompleto">Fundamental incompleto</option>
+          <option value="fundamental-completo">Fundamental completo</option>
+          <option value="medio-incompleto">Médio incompleto</option>
+          <option value="medio-completo">Médio completo</option>
+          <option value="superior-incompleto">Superior incompleto</option>
+          <option value="superior-completo">Superior completo</option>
+          <option value="pos-graduacao">Pós-graduação</option>
+          <option value="mestrado">Mestrado</option>
+          <option value="doutorado">Doutorado</option>
+        </select>
+        <small *ngIf="checkValidTouched('escolaridade')" style="color: red"
+          >Escolaridade é obrigatório.</small
+        >
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="naturalidade" class="control-label">Natural de </label>
+        <input
+          type="text"
+          class="form-control"
+          id="naturalidade"
+          formControlName="naturalidade"
+          placeholder="Exemplo: São Paulo"
+        />
+        <small *ngIf="checkValidTouched('naturalidade')" style="color: red"
+          >Naturalidade é obrigatória</small
+        >
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="telefone" class="control-label">Telefone </label>
+        <input
+          type="text"
+          class="form-control"
+          id="telefone"
+          formControlName="telefone"
+          placeholder="Exemplo: 912345678"
+        />
+        <small *ngIf="checkValidTouched('telefone')" style="color: red"
+          >Telefone é obrigatório</small
+        >
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="religiao" class="control-label">Religião</label>
+        <select
+          class="form-control"
+          id="religiao"
+          name="religiao"
+          formControlName="religiao"
+        >
+          <option value="sim">Sim</option>
+          <option value="nao">Não</option>
+        </select>
+        <small *ngIf="checkValidTouched('religiao')" style="color: red"
+          >Religião é obrigatório</small
+        >
+      </div>
 
-          <div class="col-md-4 mb-3 mx-auto" *ngIf="checkYesorNo('religiao') === 'sim'">
-            <label for="nomeReligiao" class="control-label">Nome da Religião</label>
-            <input type="text" class="form-control" id="nomeReligiao" formControlName="nomeReligiao">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="col-md-4 mb-3">
-            <label for="postoDeSaude" class="control-label">Posto de Saúde </label>
-            <input
-            type="text"
-            class="form-control"
-            id="postoDeSaude"
-            formControlName="postoDeSaude"
-            placeholder="Exemplo: Cachoeirinha"
-            />
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="bolsaFamilia" class="control-label">Bolsa Família </label>
-            <select class="form-control" id="bolsaFamilia" name="bolsaFamilia" formControlName="bolsaFamilia">
-              <option value="sim">Sim</option>
-              <option value="nao">Não</option>
-            </select>
-            <small *ngIf="checkValidTouched('bolsaFamilia')" style="color: red">Bolsa Família é obrigatório</small>
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="profissao" class="control-label">Atividade/Profissão </label>
-            <input type="text" class="form-control" id="profissao" formControlName="profissao">
-            <small *ngIf="checkValidTouched('profissao')" style="color: red">Profissão é obrigatório</small>
-          </div>
+      <div
+        class="col-md-4 mb-3 mx-auto"
+        *ngIf="checkYesorNo('religiao') === 'sim'"
+      >
+        <label for="nomeReligiao" class="control-label">Nome da Religião</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nomeReligiao"
+          formControlName="nomeReligiao"
+        />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="postoDeSaude" class="control-label">Posto de Saúde </label>
+        <input
+          type="text"
+          class="form-control"
+          id="postoDeSaude"
+          formControlName="postoDeSaude"
+          placeholder="Exemplo: Cachoeirinha"
+        />
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="bolsaFamilia" class="control-label">Bolsa Família </label>
+        <select
+          class="form-control"
+          id="bolsaFamilia"
+          name="bolsaFamilia"
+          formControlName="bolsaFamilia"
+        >
+          <option value="sim">Sim</option>
+          <option value="nao">Não</option>
+        </select>
+        <small *ngIf="checkValidTouched('bolsaFamilia')" style="color: red"
+          >Bolsa Família é obrigatório</small
+        >
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="profissao" class="control-label"
+          >Atividade/Profissão
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          id="profissao"
+          formControlName="profissao"
+        />
+        <small *ngIf="checkValidTouched('profissao')" style="color: red"
+          >Profissão é obrigatório</small
+        >
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="divida" class="control-label">Possui Dívida</label>
+        <select
+          class="form-control"
+          id="divida"
+          name="divida"
+          formControlName="divida"
+        >
+          <option value="sim">Sim</option>
+          <option value="nao">Não</option>
+        </select>
+        <small *ngIf="checkValidTouched('divida')" style="color: red"
+          >Possui Dívida é obrigatório</small
+        >
+      </div>
 
-
-        </div>
-        <div class="form-row">
-          <div class="col-md-6 mb-3">
-            <label for="divida" class="control-label">Possui Dívida</label>
-            <select class="form-control" id="divida" name="divida" formControlName="divida">
-              <option value="sim">Sim</option>
-              <option value="nao">Não</option>
-            </select>
-            <small *ngIf="checkValidTouched('divida')" style="color: red">Possui Dívida é obrigatório</small>
-          </div>
-
-          
-
-        <div class="col-md-6 mb-3">
-          <label for="renda" class="control-label">Renda Mensal </label>
-          <input
+      <div class="col-md-6 mb-3">
+        <label for="renda" class="control-label">Renda Mensal </label>
+        <input
           type="text"
           class="form-control"
           id="renda"
           formControlName="renda"
           placeholder="Exemplo: R$ 1200"
-          />
-          <small *ngIf="checkValidTouched('renda')" style="color: red">Renda Mensal é obrigatório</small>
-        </div>
-        <div class="col-md-4 mb-3 mx-auto" *ngIf="checkYesorNo('divida') === 'sim'">
-          <label for="valorDivida" class="control-label">Valor da Dívida</label>
-          <input type="text" class="form-control" id="valorDivida" formControlName="valorDivida">
-        </div>
-        </div>
+        />
+        <small *ngIf="checkValidTouched('renda')" style="color: red"
+          >Renda Mensal é obrigatório</small
+        >
+      </div>
+      <div
+        class="col-md-4 mb-3 mx-auto"
+        *ngIf="checkYesorNo('divida') === 'sim'"
+      >
+        <label for="valorDivida" class="control-label">Valor da Dívida</label>
+        <input
+          type="text"
+          class="form-control"
+          id="valorDivida"
+          formControlName="valorDivida"
+        />
+      </div>
+    </div>
 
-        <div class="form-row">
-          <div class="col-md-6 mb-3">
-            <label for="convenio" class="control-label">Convênio Médico</label>
-            <select class="form-control" id="convenio" name="convenio" formControlName="convenio">
-              <option value="sim">Sim</option>
-              <option value="nao">Não</option>
-            </select>
-            <small *ngIf="checkValidTouched('convenio')" style="color: red">Convênio Médico é obrigatório</small>
-          </div>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="convenio" class="control-label">Convênio Médico</label>
+        <select
+          class="form-control"
+          id="convenio"
+          name="convenio"
+          formControlName="convenio"
+        >
+          <option value="sim">Sim</option>
+          <option value="nao">Não</option>
+        </select>
+        <small *ngIf="checkValidTouched('convenio')" style="color: red"
+          >Convênio Médico é obrigatório</small
+        >
+      </div>
 
-          <div class="col-md-4 mb-3 mx-auto" *ngIf="checkYesorNo('convenio') === 'sim'">
-            <label for="nomeConvenio" class="control-label">Nome do Convênio Médico</label>
-            <input type="text" class="form-control" id="nomeConvenio" formControlName="nomeConvenio">
-          </div>
-        </div>
+      <div
+        class="col-md-4 mb-3 mx-auto"
+        *ngIf="checkYesorNo('convenio') === 'sim'"
+      >
+        <label for="nomeConvenio" class="control-label"
+          >Nome do Convênio Médico</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="nomeConvenio"
+          formControlName="nomeConvenio"
+        />
+      </div>
+    </div>
+
+    <label for="comQuemMora" class="control-label">Com quem mora?</label>
+    <div class="form-row">
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="familia"
+          value="familia"
+          formControlName="comQuemMora"
+        />
+        <label class="form-check-label" for="inlineRadio1">Família</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="sozinho"
+          value="sozinho"
+          formControlName="comQuemMora"
+        />
+        <label class="form-check-label" for="inlineRadio1">Sozinho</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="amigos"
+          value="amigos"
+          formControlName="comQuemMora"
+        />
+        <label class="form-check-label" for="inlineRadio1">Amigos</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="outros"
+          value="outros"
+          formControlName="comQuemMora"
+        />
+        <label class="form-check-label" for="inlineRadio1">Outros</label>
+      </div>
+    </div>
+
+    <div    *ngIf="checkYesorNo('comQuemMora') === 'familia'">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Parentesco</th>
+            <th scope="col">Data de Nascimento</th>
+            <th scope="col">Situação Atual</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr formArrayName="familiares" *ngFor="let familiar of getFamiliares(); let i = index;">
+            <ng-container [formGroupName]="i">
+            <td><input  type="text"    class="form-control" formControlName="nomeFamiliar" /></td>
+            <td><input type="text"    class="form-control" formControlName="parentesco" /></td>
+            <td><input type="date"    class="form-control" formControlName="nascimentoFamiliar" /></td>
+            <td>
+              <select    class="form-control" formControlName="situacaoAtual">
+                <option value="aposentado">Aposentado</option>
+                <option value="trabalhoInformal">Trabalho Informal</option>
+                <option value="trabalhoFormal">Trabalho Formal</option>
+                <option value="incapacitadoDoenca">Incapacitado/Doença</option>
+                <option value="estudante">Estudante</option>
+                <option value="desempregadoSemRenda">Desempregado Sem Renda</option>
+                <option value="desempregadoComRenda">Desempregado Com Renda</option>
+                <option value="doLar">Do Lar</option>
+              </select>
+            </td>
+            <td><button type="button" class="btn btn-danger" (click)="removeFamiliar(i)" >Remover</button></td>
+          </ng-container>
+          </tr>
+        </tbody>
+      </table>
+      <button (click)="addFamiliar()" type="button" class="btn btn-primary">Cadastrar novo parente</button>
+    </div>
+
     <button type="submit" class="btn btn-primary">Enviar</button>
     <button type="button" class="btn btn-secondary" (click)="reset()">
       Cancelar

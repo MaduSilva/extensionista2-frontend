@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Form, FormBuilder, FormGroup } from '@angular/forms';
+import { Form, FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { map } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { Validators } from '@angular/forms';
@@ -12,23 +12,18 @@ import { Validators } from '@angular/forms';
 })
 export class ContemplatedRegistrationComponent implements OnInit {
   formulario!: FormGroup;
+  previewUrl!: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private toastr: ToastrService
-  ) {}
-
-  ngOnInit() {
-    
+  ) {
     this.formulario = this.formBuilder.group({
+    
+      photo: [''],
       nome: [null, [Validators.required, Validators.minLength(3)]],
       email: [null, [Validators.required, Validators.email]],
-      cep: [null, [Validators.required, Validators.pattern(/^\d{5}-?\d{3}$/)]],
-      rua: [null, [Validators.required, Validators.minLength(3)]],
-      numero: [null, [Validators.required]],
-      bairro: [null],
-      complemento: [null],
       rg: [null, [Validators.required, Validators.pattern(/^(\d{2}\.\d{3}\.\d{3}-\d{1}|(\d{8})([-]?)(\d{1}|X))?$/)]],
       cpf: [null, [Validators.required, Validators.pattern(/^(\d{3}\.?\d{3}\.?\d{3}-?\d{2})?$/)]],
       nascimento: [null, [Validators.required, Validators.pattern(/^(\d{2}\/\d{2}\/\d{4})?$/)]],
@@ -46,7 +41,41 @@ export class ContemplatedRegistrationComponent implements OnInit {
       renda: [null, [Validators.required]],
       convenio: [null, [Validators.required]],
       nomeConvenio: [null],
+      comQuemMora: [null],
+    
+
+   
+      cep: [null, [Validators.required, Validators.pattern(/^\d{5}-?\d{3}$/)]],
+      rua: [null, [Validators.required, Validators.minLength(3)]],
+      numero: [null, [Validators.required]],
+      bairro: [null],
+      complemento: [null],
+    
+
+      familiares: this.formBuilder.array([this.formBuilder.group({
+        nomeFamiliar: [null],
+        parentesco: [null],
+        nascimentoFamiliar: [null],
+        situacaoAtual: [null]
+      })])
+     
     });
+  }
+
+  ngOnInit() {
+    
+
+  }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    this.formulario.get('photo')?.setValue(file);
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.previewUrl = reader.result as string;
+    };
+    reader.readAsDataURL(file);
   }
 
   onSubmit() {
@@ -66,8 +95,35 @@ export class ContemplatedRegistrationComponent implements OnInit {
 
   reset() {
     this.formulario.reset();
+    this.clearFamiliares();
   }
 
+  clearFamiliares(): void {
+    const familiares = this.formulario.get('familiares') as FormArray;
+    familiares.clear();
+  }
+
+  addFamiliar(): void {
+    const familiar = this.formBuilder.group({
+      nomeFamiliar: [null],
+      parentesco: [null],
+      nascimentoFamiliar: [null],
+      situacaoAtual: [null]
+    }); 
+    const familiares = this.formulario.get('familiares') as FormArray;
+    familiares.push(familiar);
+  }
+
+
+  getFamiliares() {
+    return (<FormArray>this.formulario.get('familiares')).controls;
+  }  
+
+  removeFamiliar(index: number): void {
+    const familiares = this.formulario.get('familiares') as FormArray;
+    familiares.removeAt(index);
+  }
+  
   showSuccess() {
     this.toastr.success('Cadastrado com sucesso!');
   }
