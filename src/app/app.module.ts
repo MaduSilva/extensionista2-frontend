@@ -13,8 +13,9 @@ import { preRegistrationComponent } from './pages/preRegistration/preRegistratio
 import { DonorComponent } from './pages/donor/donor.component';
 import { ContemplatedRegistrationComponent } from './pages/contemplated-registration/contemplated-registration.component';
 
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     preRegistrationComponent,
     DonorComponent,
     ContemplatedRegistrationComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -35,8 +35,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     AuthModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    ToastrModule.forRoot(), 
   ],
-  providers: [ ],
-  bootstrap: [AppComponent]
+  providers: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
