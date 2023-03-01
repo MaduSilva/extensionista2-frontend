@@ -20,7 +20,7 @@ export class ContemplatedRegistrationComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.formulario = this.formBuilder.group({
-    
+      dataCadastro: [new Date()],
       photo: [''],
       nome: [null, [Validators.required, Validators.minLength(3)]],
       email: [null, [Validators.required, Validators.email]],
@@ -50,7 +50,18 @@ export class ContemplatedRegistrationComponent implements OnInit {
       numero: [null, [Validators.required]],
       bairro: [null],
       complemento: [null],
-    
+      indicacao: [null],
+      nomeIndicacao: [null],
+      responsavelSustento: [null],
+      necessitaFralda: [null],
+      necessitaLeite: [null],
+      tipoResidencia: [null],
+      medicamentos: [null],
+      quemUsaMedicamento: [null],
+      fumante: [null],
+      familiarEnvolvidoDrogas: [null],
+      familiarDeficiencia: [null],
+      curso: [null],
 
       familiares: this.formBuilder.array([this.formBuilder.group({
         nomeFamiliar: [null],

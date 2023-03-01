@@ -417,7 +417,7 @@
       </div>
     </div>
 
-    <div    *ngIf="checkYesorNo('comQuemMora') === 'familia'">
+    <div *ngIf="checkYesorNo('comQuemMora') === 'familia'">
       <table class="table">
         <thead>
           <tr>
@@ -427,30 +427,278 @@
             <th scope="col">Situação Atual</th>
           </tr>
         </thead>
-        <tbody >
-          <tr formArrayName="familiares" *ngFor="let familiar of getFamiliares(); let i = index;">
+        <tbody>
+          <tr
+            formArrayName="familiares"
+            *ngFor="let familiar of getFamiliares(); let i = index"
+          >
             <ng-container [formGroupName]="i">
-            <td><input  type="text"    class="form-control" formControlName="nomeFamiliar" /></td>
-            <td><input type="text"    class="form-control" formControlName="parentesco" /></td>
-            <td><input type="date"    class="form-control" formControlName="nascimentoFamiliar" /></td>
-            <td>
-              <select    class="form-control" formControlName="situacaoAtual">
-                <option value="aposentado">Aposentado</option>
-                <option value="trabalhoInformal">Trabalho Informal</option>
-                <option value="trabalhoFormal">Trabalho Formal</option>
-                <option value="incapacitadoDoenca">Incapacitado/Doença</option>
-                <option value="estudante">Estudante</option>
-                <option value="desempregadoSemRenda">Desempregado Sem Renda</option>
-                <option value="desempregadoComRenda">Desempregado Com Renda</option>
-                <option value="doLar">Do Lar</option>
-              </select>
-            </td>
-            <td><button type="button" class="btn btn-danger" (click)="removeFamiliar(i)" >Remover</button></td>
-          </ng-container>
+              <td>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="nomeFamiliar"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="parentesco"
+                />
+              </td>
+              <td>
+                <input
+                  type="date"
+                  class="form-control"
+                  formControlName="nascimentoFamiliar"
+                />
+              </td>
+              <td>
+                <select class="form-control" formControlName="situacaoAtual">
+                  <option value="aposentado">Aposentado</option>
+                  <option value="trabalhoInformal">Trabalho Informal</option>
+                  <option value="trabalhoFormal">Trabalho Formal</option>
+                  <option value="incapacitadoDoenca">
+                    Incapacitado/Doença
+                  </option>
+                  <option value="estudante">Estudante</option>
+                  <option value="desempregadoSemRenda">
+                    Desempregado Sem Renda
+                  </option>
+                  <option value="desempregadoComRenda">
+                    Desempregado Com Renda
+                  </option>
+                  <option value="doLar">Do Lar</option>
+                </select>
+              </td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  (click)="removeFamiliar(i)"
+                >
+                  Remover
+                </button>
+              </td>
+            </ng-container>
           </tr>
         </tbody>
       </table>
-      <button (click)="addFamiliar()" type="button" class="btn btn-primary">Cadastrar novo parente</button>
+      <button (click)="addFamiliar()" type="button" class="btn btn-primary">
+        Cadastrar novo parente
+      </button>
+    </div>
+
+    <br />
+
+    <div class="form-row">
+      <div class="col-md-6 mb-3 mx-auto" class="form-check">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          formControlName="autorizacaoImagem"
+          id="autorizacaoImagem"
+        />
+        <label for="autorizacaoImagem" class="control-label"
+          >Aceita Divulgação de Imagem?</label
+        >
+      </div>
+    </div>
+    <br />
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="indicacao" class="control-label"
+          >Foi indicado por alguém?</label
+        >
+        <select
+          class="form-control"
+          id="indicacao"
+          name="indicacao"
+          formControlName="indicacao"
+        >
+          <option value="sim">Sim</option>
+          <option value="nao">Não</option>
+        </select>
+      </div>
+
+      <div
+        class="col-md-4 mb-3 mx-auto"
+        *ngIf="checkYesorNo('indicacao') === 'sim'"
+      >
+        <label for="nomeIndicacao" class="control-label"
+          >Nome da pessoa que te indicou</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="nomeIndicacao"
+          formControlName="nomeIndicacao"
+        />
+      </div>
+    </div>
+
+    <h2>Questionário Socioeconômico</h2>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="necessitaLeite" class="control-label"
+          >Necessita de leite?</label
+        >
+        <select
+          class="form-control"
+          id="necessitaLeite"
+          name="necessitaLeite"
+          formControlName="necessitaLeite"
+        >
+          <option value="sim">Sim</option>
+          <option value="nao">Não</option>
+        </select>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="necessitaFralda" class="control-label"
+          >Necessita de fraldas? (Bebê ou Geriátrica)</label
+        >
+        <select
+          class="form-control"
+          id="necessitaFralda"
+          name="necessitaFralda"
+          formControlName="necessitaFralda"
+        >
+          <option value="sim">Sim</option>
+          <option value="nao">Não</option>
+        </select>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="tipoResidencia" class="control-label"
+          >Qual o tipo de residência da sua família?</label
+        >
+        <select
+          class="form-control"
+          id="tipoResidencia"
+          name="tipoResidencia"
+          formControlName="tipoResidencia"
+        >
+          <option value="Propria">Própria</option>
+          <option value="Alugada">Alugada</option>
+          <option value="Alvenaria">Alvenaria</option>
+          <option value="Madeira">Madeira</option>
+          <option value="Invasao">Invasão</option>
+          <option value="Emprestada">Emprestada</option>
+        </select>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="responsavelSustento" class="control-label"
+          >Quem é o principal responsável pelo sustento da família?</label
+        >
+        <select
+          class="form-control"
+          id="responsavelSustento"
+          name="responsavelSustento"
+          formControlName="responsavelSustento"
+        >
+          <option value="entrevistado">O próprio entrevistado</option>
+          <option value="conjuge">Cônjuge</option>
+          <option value="paiOuMae">Pai/Mãe</option>
+          <option value="filho">Filho(a)</option>
+          <option value="irmao">Irmão(a)</option>
+          <option value="outros">Outros</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="medicamentos" class="control-label"
+          >Uso contínuo de medicamentos?</label
+        >
+        <select
+          class="form-control"
+          id="medicamentos"
+          name="medicamentos"
+          formControlName="medicamentos"
+        >
+          <option value="sim">Sim</option>
+          <option value="nao">Não</option>
+        </select>
+      </div>
+
+      <div
+        class="col-md-4 mb-3 mx-auto"
+        *ngIf="checkYesorNo('medicamentos') === 'sim'"
+      >
+        <label for="quemUsaMedicamento" class="control-label"
+          >Quem?</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="quemUsaMedicamento"
+          formControlName="quemUsaMedicamento"
+          placeholder="Exemplo: Mãe, Irmão, etc"
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-3 mb-3">
+        <label for="fumante" class="control-label"
+          >Alguém fuma em <br/>sua família?</label
+        >
+        <select
+          class="form-control"
+          id="fumante"
+          name="fumante"
+          formControlName="fumante"
+        >
+          <option value="sim">Sim</option>
+          <option value="nao">Não</option>
+        </select>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="familiarEnvolvidoDrogas" class="control-label"
+          >Tem algum familiar envolvido com drogas ou alcoolismo?</label
+        >
+        <select
+          class="form-control"
+          id="familiarEnvolvidoDrogas"
+          name="familiarEnvolvidoDrogas"
+          formControlName="familiarEnvolvidoDrogas"
+        >
+          <option value="sim">Sim</option>
+          <option value="nao">Não</option>
+        </select>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="familiarDeficiencia" class="control-label"
+          >Alguém de sua família <br/>tem deficiência?</label
+        >
+        <select
+          class="form-control"
+          id="familiarDeficiencia"
+          name="familiarDeficiencia"
+          formControlName="familiarDeficiencia"
+        >
+          <option value="sim">Sim</option>
+          <option value="nao">Não</option>
+        </select>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="curso" class="control-label"
+          >Existe interesse em fazer algum curso profissionalizante?</label
+        >
+        <select
+          class="form-control"
+          id="curso"
+          name="curso"
+          formControlName="curso"
+        >
+          <option value="sim">Sim</option>
+          <option value="nao">Não</option>
+        </select>
+      </div>  
     </div>
 
     <button type="submit" class="btn btn-primary">Enviar</button>
